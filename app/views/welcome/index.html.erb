@@ -1,2 +1,38 @@
-<h1>Blocipedia</h1>
-<p>Ruby on Rails based wiki project from <a href="http://www.bloc.io" title="">Bloc</a></p>
+<br >
+<div class="jumbotron">
+	<h1>Blocipedia: Social, Markdown Wikis</h1>
+	<div class="row">
+		<% if user_signed_in? %>
+			<div class="col-md-2">
+			</div>
+			<div id="welcome-after-sign-up" class="col-md-8 text-center">
+				<h2>Welcome to Blocipedia, <%= current_user.email %></h2>
+			</div>
+			<div class="col-md-2">
+			</div>
+		<% else %>
+			<div class="col-md-2">
+			</div>
+			<div id="promote-sign-up" class="col-md-8 text-center">
+				<h2>Create and share markdown wikis</h2>
+				<%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary', role: 'button' %>
+			</div>
+			<div class="col-md-2">
+			</div>
+		<% end %>
+	</div>
+	<div class="row">
+		<div class="box">
+			<div class="col-md-6 text-center">
+				<p>Create as many wikis as you want!</p>
+				<p id="free"></p>
+				<p>Free Plan</p>
+			</div>
+			<div class="col-md-6 text-center">
+				<p>Create private wikis!</p>
+				<p id="premium"></p>
+				<p>Premium Plan</p>
+			</div>
+		</div>
+	</div>
+</div>
