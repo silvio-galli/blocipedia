@@ -1,0 +1,28 @@
+<% if user_signed_in? %>
+  <div class="row">
+    <h1>My Wikis list</h1>
+    <div class="col-md-8">
+      <%= render partial: 'my_wikis_table', locals: { wikis: @wikis } %>
+    </div>
+    <div class="col-md-4">
+      <%= render partial: 'signed_in_or_signup' %>
+    </div>
+  </div>
+  <div class=row>
+    <h1>Other Wikis list</h1>
+    <div class="col-md-8">
+      <%= render partial: 'all_wikis_table', locals: { wikis: @wikis } %>
+    </div>
+    <div class="col-md-4 empty-div">
+      &nbsp;
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <h1>Wikis list</h1>
+    <div class="col-md-8">
+      <%= render partial: 'all_wikis_table', locals: { wikis: @wikis } %>
+    </div>
+    <%= render partial: 'signed_in_or_signup' %>
+  </div>
+<% end %>

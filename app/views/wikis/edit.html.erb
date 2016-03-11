@@ -1,0 +1,13 @@
+<h1>Edit Wiki</h1>
+<div class"row">
+  <div class="col-md-8">
+    <ul>
+      <p>Remember:</p>
+      <li>Title must have at least 3 and at most 100 characters</li>
+      <li>Body must have at least 20 characters</li>
+      <li>Enjoy yourself</li>
+      <li>Be funny</li>
+    </ul>
+    <%= render partial: 'wiki_form', locals: { wiki: @wiki } %>
+  </div>
+</div>
