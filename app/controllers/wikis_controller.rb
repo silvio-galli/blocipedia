@@ -28,6 +28,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki, :admin_or_owner?
   end
 
   def update
@@ -45,7 +46,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-
+    authorize @wiki, :admin_or_owner?
     if @wiki.destroy
       flash[:notice] = "Wiki #{@wiki.id} was deleted."
       redirect_to wikis_path
