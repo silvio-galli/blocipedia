@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <div class="col-md-4">
+    <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+  </div>
+<% else %>
+  <div class="col-md-4 not-signed-in">
+    <p><%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> If you want to create new wikis or read them entirely.</p>
+  </div>
+<% end %>
