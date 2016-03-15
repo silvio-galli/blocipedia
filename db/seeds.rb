@@ -5,3 +5,38 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+5.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  domain = Faker::Internet.domain_name
+  user = User.create!(
+    user_name:          "#{first_name} #{last_name}",
+    email:              "#{first_name}.#{last_name}@#{domain}",
+    password:           Faker::Internet.password(8),
+    confirmation_token: Faker::Internet.password(20),
+    confirmed_at:       Faker::Time.between(DateTime.now - 2, DateTime.now)
+  )
+end
+
+me = User.create!(
+  user_name:          "Silvio",
+  email:              "silvio.galli@gmail.com",
+  password:           "password",
+  confirmation_token: "nUL2xBpinJyT7Yy8PEJK",
+  confirmed_at:       "2016-03-11 17:01:47"
+)
+
+users = User.all
+
+
+50.times do
+  wiki = Wiki.create!(
+    user: users.sample,
+    title: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraph(5, true, 10)
+  )
+end
+
+puts "Seed finished!"
+puts "Blocipedia was populated with #{User.count} new users."
+puts "Blocipedia was populated with #{Wiki.count} new wikis."
