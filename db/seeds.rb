@@ -18,12 +18,20 @@
   )
 end
 
+member = User.create!(
+  user_name:          "Member User",
+  email:              "member@example.com",
+  password:           "password",
+  confirmation_token: "UULUxBpinJyT7Yy8PEJK",
+  confirmed_at:       "2016-03-11 17:01:47"
+)
+
 me = User.create!(
   user_name:          "Silvio",
   email:              "silvio.galli@gmail.com",
   password:           "password",
   confirmation_token: "nUL2xBpinJyT7Yy8PEJK",
-  confirmed_at:       "2016-03-11 17:01:47"
+  confirmed_at:       "2016-03-12 17:01:47"
 )
 
 users = User.all
