@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :wikis, dependent: :destroy
-  after_initialize { self.role ||= :standard }
+  after_initialize { self.role ||= :free }
 
-  enum role: [:standard, :premium, :admin]
+  enum role: [:free, :premium, :admin]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

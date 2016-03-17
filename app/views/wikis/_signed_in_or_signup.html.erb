@@ -1,6 +1,12 @@
 <% if user_signed_in? %>
   <div class="col-md-4">
     <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+    <br /><br />
+    <% if current_user.free? %>
+      <%= link_to "Upgrade to Premium Plan", new_charge_path, class: 'btn btn-primary' %>
+    <% else %>
+      <%= link_to "Downgrade to Free Plan", wikis_path,class: 'btn btn-primary' %>
+    <% end %>
   </div>
 <% else %>
   <div class="col-md-4 not-signed-in">

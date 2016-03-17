@@ -1,5 +1,11 @@
-<h1><%= @wiki.title %></h1>
-
+<h1>
+  <%= @wiki.title %>
+  <% if @wiki.private %>
+    <small class="private-wiki">private wiki</small>
+  <% else %>
+    <small class="public-wiki">public wiki</small>
+  <% end %>
+</h1>
 <% if user_signed_in? %>
   <p class="author-info">created by <%= @wiki.user.user_name %> at <%= @wiki.created_at.strftime("%B %d, %Y") %></p>
 <% end %>

@@ -1,5 +1,6 @@
 <table class="table table-bordered table-hover">
   <tr class="bg-info">
+    <th></th>
     <th>wiki title</th>
     <th>created at</th>
     <th></th>
@@ -8,6 +9,7 @@
   <% wikis.each do |wiki| %>
     <% if wiki.user_id == current_user.id %>
       <tr class="active">
+        <td><small><%= wiki.private ? "private" : "public" %></small></td>
         <td><%= link_to wiki.title, wiki_path(wiki.id), title: "Read this wiki." %></td>
         <td><small><%= wiki.created_at.strftime("%B %d, %Y") %></small></td>
         <td><%= link_to "edit", edit_wiki_path(wiki.id), title: "Edit this wiki" %></td>
