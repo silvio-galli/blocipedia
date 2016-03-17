@@ -1,0 +1,20 @@
+<% if @user.id == current_user.id %>
+  <h1><%= @user.user_name %>'s Profile Page</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <p class="lead">These are your profile settings:</p>
+      <ul>
+        <li>Email: <%= @user.email %></li>
+        <li>Plan: <%= @user.role %></li>
+      </ul>
+      <h2>Your wikis</h2>
+      <%= render partial: 'wikis/my_wikis_table', locals: { wikis: @user.wikis } %>
+    </div>
+    <div class="col-md-4">
+      <%= render partial: 'wikis/signed_in_or_signup' %>
+    </div>
+  </div>
+<% else %>
+  <h1>Attention! You're trying to view the profile page of another user.</h1>
+  <p><%= link_to "back to your profile", user_path(current_user.id) %></p>
+<% end %>
