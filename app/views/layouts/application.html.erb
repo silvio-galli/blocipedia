@@ -15,7 +15,7 @@
     <li><%= link_to "Wikis", wikis_path %></li>
 		<div class="pull-right user-info">
 			<% if user_signed_in? %>
-				Signed in as: <strong><%= link_to current_user.user_name, wikis_path, title: "Go to your page." %></strong>
+				Signed in as: <strong><%= link_to current_user.user_name, user_path(current_user.id), title: "Go to your profile page." %></strong>
         (<%= "#{current_user.role} plan" %>)
         -
 				<%= link_to "Edit profile", edit_user_registration_path, class: 'navbar-link' %>
