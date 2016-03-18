@@ -16,4 +16,5 @@ class UsersController < ApplicationController
       redirect_to wikis_path
     end
   end
+  
 end

@@ -5,11 +5,9 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create]
 
-  resources :users, only: [ :show ] do
-    member do
-      post 'downgrade'
-    end
-  end
+  resources :users, only: [ :show ]
+
+  resources :subscriptions, only: [:create]
 
   get 'welcome/index'
 

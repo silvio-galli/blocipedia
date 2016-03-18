@@ -1,4 +1,5 @@
 class ChargesController < ApplicationController
+
   def new
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
@@ -22,7 +23,8 @@ class ChargesController < ApplicationController
       currency: "usd"
     )
     if charge["status"] == "succeeded"
-      current_user.update(role: :premium)
+      current_user.subscriptions.create(premium: true)
+      current_user.update_role_based_on_subscription
     end
     flash[:notice] = "Thanks for your premium subscription, #{current_user.email}. Your plan was upgraded to #{current_user.role.capitalize}."
     redirect_to wikis_path
