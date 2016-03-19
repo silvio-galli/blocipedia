@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(subscription_params)
     @subscription.user = current_user
-    end
+  end
 
   def destroy
     @subscription = Subscription.find(params[:id])
