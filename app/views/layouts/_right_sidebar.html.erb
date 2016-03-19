@@ -5,7 +5,7 @@
     <% if current_user.free? %>
       <%= link_to "Upgrade to Premium Plan", new_charge_path, class: 'btn btn-primary' %>
     <% else %>
-      <%=  link_to "Downgrade to Free Plan", wikis_path, class: 'btn btn-primary', method: :post, data: { Confirm: 'Are you sure you want to downgrade to Free Plan? '} %>
+      <%= link_to "Downgrade to Free Plan", subscription_path(current_user.subscriptions.last.id), class: 'btn btn-danger', method: :delete, data: { Confirm: 'Are you sure you want to downgrade to Free Plan?'} %>
     <% end %>
   </div>
 <% else %>

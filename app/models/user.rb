@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
  def update_role_based_on_subscription
-   if self.subscriptions.last.premium
+   unless self.subscriptions == []
      self.update(role: :premium)
    else
      self.update(role: :free)

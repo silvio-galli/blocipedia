@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [ :show ]
 
-  resources :subscriptions, only: [:create]
+  resources :subscriptions, only: [:create, :destroy]
 
   get 'welcome/index'
 

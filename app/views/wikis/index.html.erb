@@ -5,7 +5,7 @@
       <%= render partial: 'my_wikis_table', locals: { wikis: @wikis } %>
     </div>
     <div class="col-md-4">
-      <%= render partial: 'signed_in_or_signup' %>
+      <%= render partial: 'layouts/right_sidebar' %>
     </div>
   </div>
   <div class=row>
@@ -23,6 +23,6 @@
     <div class="col-md-8">
       <%= render partial: 'all_wikis_table', locals: { wikis: @wikis } %>
     </div>
-    <%= render partial: 'signed_in_or_signup' %>
+    <%= render partial: 'layouts/right_sidebar' %>
   </div>
 <% end %>
