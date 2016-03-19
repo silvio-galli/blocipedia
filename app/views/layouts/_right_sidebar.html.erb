@@ -3,7 +3,7 @@
     <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
     <br /><br />
     <% if current_user.free? %>
-      <%= link_to "Upgrade to Premium Plan", new_charge_path, class: 'btn btn-primary' %>
+      <%= link_to "Upgrade to Premium Plan", new_subscription_path, class: 'btn btn-primary' %>
     <% else %>
       <% if policy(current_user).is_premium? %>
         <%= link_to "Downgrade to Free Plan", subscription_path(current_user.subscriptions.last.id), class: 'btn btn-danger', method: :delete, data: { Confirm: 'Are you sure you want to downgrade to Free Plan?'} %>

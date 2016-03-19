@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
  def update_role_based_on_subscription
    if self.subscriptions != [] && self.subscriptions.last.premium
      self.update(role: :premium)
-   else
+   elsif self.subscriptions == [] || self.subscriptions.last.premium == false
      self.update(role: :free)
    end
  end
