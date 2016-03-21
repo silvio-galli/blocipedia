@@ -3,13 +3,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :charges, only: [:new, :create]
+  #resources :charges, only: [:new, :create]
 
-  resources :users, only: [ :show ] do
-    member do
-      post 'downgrade'
-    end
-  end
+  resources :users, only: [ :show ]
+
+  resources :subscriptions, only: [:new, :create, :destroy]
 
   get 'welcome/index'
 

@@ -24,7 +24,7 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-    if @wiki.private
+    if @wiki.private && user_signed_in?
       authorize @wiki, :admin_or_owner?
     end
   end

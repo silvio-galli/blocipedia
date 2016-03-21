@@ -1,0 +1,15 @@
+<h4>
+  If you want to become a <strong>Premium</strong> user and create
+  <strong>private</strong> wikis, you have to pay <strong><%= number_to_currency(Amount.default / 100, format: "%n %u") %></strong>.
+</h4>
+
+<%= form_for @subscription do |f| %>
+  <%= f.hidden_field :premium %>
+  <script
+    class="stripe-button"
+    src="https://checkout.stripe.com/checkout.js"
+    data-key="<%= @stripe_btn_data[:key] %>"
+    data-description="<%= @stripe_btn_data[:description] %>"
+    data-amount="<%= @stripe_btn_data[:amount] %>">
+  </script>
+<% end %>

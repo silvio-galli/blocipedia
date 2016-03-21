@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   # Redirects user to wikis#index after signing in
   def after_sign_in_path_for(resource)
-    wikis_path
+    user_path(current_user)
   end
 
   before_action :configure_permitted_parameters, if: :devise_controller?

@@ -1,0 +1,32 @@
+<table class="table table-bordered table-hover">
+  <tr>
+    <th></th>
+    <th>wiki title</th>
+    <th>created at</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% wikis.each do |wiki| %>
+    <% if wiki.user == current_user && current_page?(controller: 'wikis', action: 'index') %>
+      <tr class="active info">
+    <% else %>
+      <tr class="active">
+    <% end %>
+      <td><small><%= wiki.private ? "private" : "public" %></small></td>
+      <td><%= link_to wiki.title, wiki_path(wiki.id), title: "Read this wiki." %></td>
+      <td><small><%= wiki.created_at.strftime("%B %d, %Y") %></small></td>
+      <td>
+        <% if user_signed_in? && wiki.user_id == current_user.id %>
+          <%= link_to "edit", edit_wiki_path(wiki.id), title: "Edit this wiki" %>
+        <% else %>
+          <%= content_tag :span, "edit", class: 'text-muted' %></td>
+        <% end %>
+      <td>
+        <% if user_signed_in? && wiki.user_id == current_user.id %>
+          <%= link_to "delete", wiki, method: :delete, title: "Delete this wiki", data: { confirm: 'Are you sure you want to delete this wiki?' } %>
+        <% else %>
+          <%= content_tag :span, "delete", class: 'text-muted' %></td>
+        <% end %>
+    </tr>
+  <% end %>
+</table>
