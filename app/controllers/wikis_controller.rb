@@ -27,11 +27,17 @@ class WikisController < ApplicationController
     if @wiki.private && user_signed_in?
       authorize @wiki, :admin_or_owner?
     end
+    
+    renderer = Redcarpet::Render::HTML
+    @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
     authorize @wiki, :admin_or_owner?
+
+    renderer = Redcarpet::Render::HTML
+    @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
   end
 
   def update
