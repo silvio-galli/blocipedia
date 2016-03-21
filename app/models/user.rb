@@ -16,4 +16,13 @@ class User < ActiveRecord::Base
      self.update(role: :free)
    end
  end
+
+ def update_private_wikis_after_downgrade
+   self.wikis.each do |wiki|
+     if wiki.private
+       wiki.update(private: false)
+     end
+   end
+ end
+ 
 end
