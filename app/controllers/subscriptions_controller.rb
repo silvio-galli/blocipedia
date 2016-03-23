@@ -31,7 +31,7 @@ class SubscriptionsController < ApplicationController
       current_user.update_role_based_on_subscription
     end
     flash[:notice] = "Thanks for your premium subscription, #{current_user.email}. Your plan was upgraded to #{current_user.role.capitalize}."
-    redirect_to wikis_path
+    redirect_to user_path(current_user)
 
     rescue Stripe::CardError => e
       flash.now[:alert] = e.message
@@ -41,13 +41,14 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription = Subscription.find(params[:id])
     if @subscription.destroy
-      flash[:notice] = "You've been downgraded from Premium plan to Free plan."
-      redirect_to wikis_path
+      flash[:notice] = "You've been downgraded from Premium plan to Free plan. Now all your wikis are public."
+      redirect_to user_path(current_user)
     else
       flash[:alert] = "You're request wasn't executed. Please try again or contact us."
-      redirect_to wikis_path
+      redirect_to user_path(current_user)
     end
     current_user.update_role_based_on_subscription
+    current_user.update_private_wikis_after_downgrade
   end
 
   private

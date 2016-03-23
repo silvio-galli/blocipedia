@@ -5,7 +5,7 @@
       <p class="lead">These are your profile settings:</p>
       <ul>
         <li>Email: <%= @user.email %></li>
-        <li>Plan: <%= @user.role %></li>
+        <li>Plan: <%= link_to @user.role.capitalize, root_path, title: "Your plan features" %></li>
       </ul>
       <h2>Your wikis</h2>
       <%= render partial: 'wikis/wikis_table', locals: { wikis: @user.wikis } %>

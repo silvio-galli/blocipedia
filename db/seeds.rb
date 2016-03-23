@@ -45,6 +45,12 @@ users = User.all
   )
 end
 
+md_wiki = Wiki.create!(
+  user: User.last,
+  title: "Markdown Wiki",
+  body: "# This is a h1 title\n## this is a h2 title\nthis is a list\n* item\n* item\n* item\n``` this is code```"
+)
+
 puts "Seed finished!"
 puts "Blocipedia was populated with #{User.count} new users."
 puts "Blocipedia was populated with #{Wiki.count} new wikis."
