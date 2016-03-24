@@ -11,3 +11,38 @@
     <%= render partial: 'wiki_form', locals: { wiki: @wiki } %>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-8">
+    <% wiki_collaborations = Collaborator.where(wiki_id: @wiki.id) %>
+    <% users_collaborating = wiki_collaborations.pluck(:user_id) %>
+    <% users = User.all %>
+    <table class="table table-bordered">
+      <th>user id</th>
+      <th>user name</th>
+      <th>user email</th>
+      <th>Add/Remove collaborator</th>
+      <% users.each do |u| %>
+        <% if u.id != @wiki.user_id %>
+        <tr>
+          <td><%= u.id %></td>
+          <td><%= u.user_name %></td>
+          <td><%= u.email %></td>
+          <td>
+            <% if users_collaborating.include?(u.id) %>
+              <%= form_tag(controller: "collaborators", action: "destroy") do %>
+                <%= submit_tag("Remove", class: 'btn btn-danger') %>
+              <% end %>
+            <% else %>
+              <%= form_tag(controller: "collaborators", action: "create") do %>
+                <%= hidden_field_tag(:wiki_id, @wiki.id) %>
+                <%= hidden_field_tag(:user_id, u.id) %>
+                <%= submit_tag("Add", class: 'btn btn-success') %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>

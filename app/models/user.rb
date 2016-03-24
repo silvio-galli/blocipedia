@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   after_initialize { self.role ||= :free }
 
   enum role: [:free, :premium, :admin]
+
+  scope :users_list, ->(user) { where('id != ?', user.id) }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -24,5 +27,5 @@ class User < ActiveRecord::Base
      end
    end
  end
- 
+
 end
