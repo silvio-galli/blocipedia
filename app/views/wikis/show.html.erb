@@ -19,7 +19,7 @@
   <div class="col-md-8">
     <% if user_signed_in? %>
       <p class="lead">
-        <%= @markdown.render(@wiki.body).html_safe %>
+        <%= markdown_to_html(@wiki.body).html_safe %>
       </p>
     <% else %>
       <p class="alert">Attention: You need to be <%= link_to "signed in", new_user_session_path %> to read wikis.</p>
