@@ -7,11 +7,19 @@
         <li>Email: <%= @user.email %></li>
         <li>Plan: <%= link_to @user.role.capitalize, root_path, title: "Your plan features" %></li>
       </ul>
-      <h2>Your wikis</h2>
-      <%= render partial: 'wikis/wikis_table', locals: { wikis: @user.wikis } %>
     </div>
     <div class="col-md-4">
       <%= render partial: 'layouts/right_sidebar' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Your wikis</h2>
+      <%= render partial: 'wikis/wikis_table', locals: { wikis: @user.wikis } %>
+    </div>
+    <div class="col-md-6">
+      <h2>Your Collaborations</h2>
+      <%= render partial: 'wikis/collaborators_table', locals: { collabos: @user.collaborators } %>
     </div>
   </div>
 <% else %>

@@ -1,0 +1,16 @@
+<table class="table table-bordered table-hover">
+  <tr>
+    <th></th>
+    <th>wiki title</th>
+    <th>created at</th>
+    <th></th>
+  </tr>
+  <% collabos.each do |collabo| %>
+    <tr>
+      <td><small><%= collabo.wiki.private ? "private" : "public" %></small></td>
+      <td><%= link_to collabo.wiki.title, wiki_path(collabo.wiki.id), title: "Read this wiki." %></td>
+      <td><small><%= collabo.wiki.created_at.strftime("%B %d, %Y") %></small></td>
+      <td><%= link_to "edit", edit_wiki_path(collabo.wiki.id), title: "Edit this wiki" %></td>
+    </tr>
+  <% end %>
+</table>
