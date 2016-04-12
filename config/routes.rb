@@ -5,9 +5,11 @@ Rails.application.routes.draw do
 
   #resources :charges, only: [:new, :create]
 
-  resources :users, only: [ :show ]
+  resources :users, only: [ :show, :index ]
 
   resources :subscriptions, only: [:new, :create, :destroy]
+
+  resources :collaborators
 
   get 'welcome/index'
 

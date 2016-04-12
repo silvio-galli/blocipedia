@@ -2,7 +2,7 @@ class WikisController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def new
@@ -25,19 +25,16 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
     if @wiki.private && user_signed_in?
-      authorize @wiki, :admin_or_owner?
+      authorize @wiki, :admin_or_owner_or_collaborator?
     end
-    
-    renderer = Redcarpet::Render::HTML
-    @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
-    authorize @wiki, :admin_or_owner?
+    authorize @wiki, :admin_or_owner_or_collaborator?
 
-    renderer = Redcarpet::Render::HTML
-    @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
+    @users = User.where.not(id: current_user.id)
+    @users_collaborating = Collaborator.where(wiki_id: @wiki.id).pluck(:user_id)
   end
 
   def update

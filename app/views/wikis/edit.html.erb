@@ -11,3 +11,33 @@
     <%= render partial: 'wiki_form', locals: { wiki: @wiki } %>
   </div>
 </div>
+<% if @wiki.user == current_user %>
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <th>user id</th>
+        <th>user name</th>
+        <th>user email</th>
+        <th>Add/Remove collaborator</th>
+        <% @users.each do |u| %>
+          <tr>
+            <td><%= u.id %></td>
+            <td><%= u.user_name %></td>
+            <td><%= u.email %></td>
+            <td>
+              <% if @users_collaborating.include?(u.id) %>
+                <%= link_to "Remove", collaborator_path(wiki_id: @wiki.id, user_id: u.id), method: :delete, class: 'btn btn-danger' %>
+              <% else %>
+                <%= form_tag(controller: "collaborators", action: "create") do %>
+                  <%= hidden_field_tag(:wiki_id, @wiki.id) %>
+                  <%= hidden_field_tag(:user_id, u.id) %>
+                  <%= submit_tag("Add", class: 'btn btn-success') %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+<% end %>

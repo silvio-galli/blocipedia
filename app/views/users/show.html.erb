@@ -7,11 +7,33 @@
         <li>Email: <%= @user.email %></li>
         <li>Plan: <%= link_to @user.role.capitalize, root_path, title: "Your plan features" %></li>
       </ul>
-      <h2>Your wikis</h2>
-      <%= render partial: 'wikis/wikis_table', locals: { wikis: @user.wikis } %>
     </div>
     <div class="col-md-4">
       <%= render partial: 'layouts/right_sidebar' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Your wikis</h2>
+      <%= render partial: 'wikis/wikis_table', locals: { wikis: @user.wikis } %>
+    </div>
+    <div class="col-md-6">
+      <h2>Collaborations <small>through wiki_collaborations association</small></h2>
+      <table class="table table-bordered">
+        <th></th>
+        <th>title</th>
+        <th>created at</th>
+        <th>wiki author</th>
+        <% @user.wiki_collaborations.each do |collaboration| %>
+          <tr>
+            <td><small><%= collaboration.private ? "private" : "public" %></small></td>
+            <td><%= link_to collaboration.title, wiki_path(collaboration.id) %></td>
+            <td><small><%= collaboration.created_at.strftime("%B %d, %Y") %></small></td>
+            <td><%= @users.find(collaboration.user_id).user_name %></td>
+            <td><%= link_to "edit", edit_wiki_path(collaboration.id) %></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 <% else %>
