@@ -1,5 +1,5 @@
 class WikisController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @wikis = policy_scope(Wiki)
@@ -24,14 +24,12 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-    if @wiki.private && user_signed_in?
-      authorize @wiki, :admin_or_owner_or_collaborator?
-    end
+    authorize @wiki
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
-    authorize @wiki, :admin_or_owner_or_collaborator?
+    authorize @wiki
 
     @users = User.where.not(id: current_user.id)
     @users_collaborating = Collaborator.where(wiki_id: @wiki.id).pluck(:user_id)
@@ -52,7 +50,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-    authorize @wiki, :admin_or_owner?
+    authorize @wiki
     if @wiki.destroy
       flash[:notice] = "Wiki #{@wiki.id} was deleted."
       redirect_to wikis_path

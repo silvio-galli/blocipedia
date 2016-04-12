@@ -11,7 +11,7 @@
     <%= render partial: 'wiki_form', locals: { wiki: @wiki } %>
   </div>
 </div>
-<% if @wiki.user == current_user %>
+<% if policy(@wiki).can_add_collaborators? %>
   <div class="row">
     <div class="col-md-8">
       <table class="table table-bordered">
