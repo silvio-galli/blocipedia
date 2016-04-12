@@ -27,7 +27,6 @@ class WikisController < ApplicationController
     if @wiki.private && user_signed_in?
       authorize @wiki, :admin_or_owner_or_collaborator?
     end
-    @wiki_collaborators = @wiki.collaborators.pluck(:user_id)
   end
 
   def edit

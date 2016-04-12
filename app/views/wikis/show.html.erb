@@ -10,7 +10,7 @@
   <p class="author-info">created by <%= @wiki.user.user_name %> at <%= @wiki.created_at.strftime("%B %d, %Y") %></p>
 <% end %>
 
-<% if user_signed_in? && (@wiki.user == current_user || @wiki_collaborators.include?(current_user.id)) %>
+<% if user_signed_in? && (@wiki.user == current_user || @wiki.users.include?(current_user)) %>
   <%= link_to "Edit Wiki", edit_wiki_path(@wiki.id), class: 'btn btn-primary' %>
 <% end %>
 

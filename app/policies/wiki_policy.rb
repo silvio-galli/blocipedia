@@ -4,8 +4,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def admin_or_owner_or_collaborator?
-    wiki_collaborators = record.collaborators.pluck(:user_id)
-    user.admin? or record.user == @user or wiki_collaborators.include?(@user.id)
+    admin_or_owner? || record.users.include?(@user)
   end
 
   class Scope
@@ -18,13 +17,20 @@ class WikiPolicy < ApplicationPolicy
 
     def resolve
       wikis = []
-      if user.role == 'admin'
+      if user == nil
+        all_wikis = scope.all
+        wikis = []
+        all_wikis.each do |wiki|
+          if !wiki.private?
+            wikis << wiki
+          end
+        end
+      elsif user.role == 'admin'
         wikis = scope.all
       elsif user.role == 'premium'
         all_wikis = scope.all
         all_wikis.each do |wiki|
-          wiki_collaborators = wiki.collaborators.pluck(:user_id)
-          if !wiki.private? || wiki.user == user || wiki_collaborators.include?(user.id)
+          if !wiki.private? || wiki.user == user || wiki.users.include?(user)
             wikis << wiki
           end
         end
@@ -32,8 +38,7 @@ class WikiPolicy < ApplicationPolicy
         all_wikis = scope.all
         wikis = []
         all_wikis.each do |wiki|
-          wiki_collaborators = wiki.collaborators.pluck(:user_id)
-          if !wiki.private? || wiki_collaborators.include?(user.id)
+          if !wiki.private? || wiki.users.include?(user)
             wikis << wiki
           end
         end
