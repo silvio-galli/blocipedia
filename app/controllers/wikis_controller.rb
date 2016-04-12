@@ -15,7 +15,7 @@ class WikisController < ApplicationController
 
     if @wiki.save
       flash[:notice] = "Wiki was successfully saved"
-      redirect_to wiki_path(@wiki.id)
+      redirect_to wiki_path(@wiki)
     else
       flash[:alert] = "Wiki was not saved. Please try again."
       render :new
@@ -23,14 +23,14 @@ class WikisController < ApplicationController
   end
 
   def show
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     if @wiki.private && user_signed_in?
       authorize @wiki, :admin_or_owner_or_collaborator?
     end
   end
 
   def edit
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     authorize @wiki, :admin_or_owner_or_collaborator?
 
     @users = User.where.not(id: current_user.id)
@@ -38,12 +38,12 @@ class WikisController < ApplicationController
   end
 
   def update
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
       flash[:notice] = "Wiki was successfully saved."
-      redirect_to wiki_path(@wiki.id)
+      redirect_to wiki_path(@wiki)
     else
       flash[:alert] = "Wiki was not saved. Try again."
       render :edit
@@ -51,7 +51,7 @@ class WikisController < ApplicationController
   end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     authorize @wiki, :admin_or_owner?
     if @wiki.destroy
       flash[:notice] = "Wiki #{@wiki.id} was deleted."

@@ -11,7 +11,7 @@
 <% end %>
 
 <% if user_signed_in? && (@wiki.user == current_user || @wiki.users.include?(current_user)) %>
-  <%= link_to "Edit Wiki", edit_wiki_path(@wiki.id), class: 'btn btn-primary' %>
+  <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-primary' %>
 <% end %>
 
 <% if user_signed_in? && @wiki.user == current_user %>

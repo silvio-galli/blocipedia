@@ -13,11 +13,11 @@
       <tr class="active">
     <% end %>
       <td><small><%= wiki.private ? "private" : "public" %></small></td>
-      <td><%= link_to wiki.title, wiki_path(wiki.id), title: "Read this wiki." %></td>
+      <td><%= link_to wiki.title, wiki_path(wiki), title: "Read this wiki." %></td>
       <td><small><%= wiki.created_at.strftime("%B %d, %Y") %></small></td>
       <td>
         <% if user_signed_in? && wiki.user_id == current_user.id %>
-          <%= link_to "edit", edit_wiki_path(wiki.id), title: "Edit this wiki" %>
+          <%= link_to "edit", edit_wiki_path(wiki), title: "Edit this wiki" %>
         <% else %>
           <%= content_tag :span, "edit", class: 'text-muted' %></td>
         <% end %>

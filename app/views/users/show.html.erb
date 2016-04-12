@@ -4,8 +4,8 @@
     <div class="col-md-8">
       <p class="lead">These are your profile settings:</p>
       <ul>
-        <li>Email: <%= @user.email %></li>
-        <li>Plan: <%= link_to @user.role.capitalize, root_path, title: "Your plan features" %></li>
+        <li>Email: <strong><%= @user.email %></strong></li>
+        <li>Plan:<strong> <%= @user.role.capitalize %></strong></li>
       </ul>
     </div>
     <div class="col-md-4">
@@ -27,7 +27,7 @@
         <% @user.wiki_collaborations.each do |collaboration| %>
           <tr>
             <td><small><%= collaboration.private ? "private" : "public" %></small></td>
-            <td><%= link_to collaboration.title, wiki_path(collaboration.id) %></td>
+            <td><%= link_to collaboration.title, wiki_path(collaboration) %></td>
             <td><small><%= collaboration.created_at.strftime("%B %d, %Y") %></small></td>
             <td><%= @users.find(collaboration.user_id).user_name %></td>
             <td><%= link_to "edit", edit_wiki_path(collaboration.id) %></td>
