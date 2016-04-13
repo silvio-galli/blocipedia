@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :wiki_collaborations, through: :collaborators, source: :wiki
 
   after_initialize { self.role ||= :free }
+  after_create :create_user_subscription
 
   enum role: [:free, :premium, :admin]
 
@@ -29,6 +30,12 @@ class User < ActiveRecord::Base
        wiki.update(private: false)
      end
    end
+ end
+
+ private
+
+ def create_user_subscription
+   subscriptions.create(premium: false) 
  end
 
 end
