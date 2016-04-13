@@ -6,5 +6,9 @@ class Wiki < ActiveRecord::Base
   validates :body, length: { minimum: 20 }, presence: true
   validates :user, presence: true
 
+  def owner
+    user
+  end
+
   default_scope { order('created_at DESC') }
 end
