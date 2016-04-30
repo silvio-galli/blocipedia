@@ -15,17 +15,20 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
-function markdownPreview() {
-  var text = document.getElementById('wiki_body').value,
-      target = document.getElementById('wiki_preview'),
-      converter = new showdown.Converter(),
-      html = converter.makeHtml(text);
+var getAndProcessMarkdown = function() {
+  var converter = new showdown.Converter();
+  var markdown = $('#wiki_body').val();
+  var html = converter.makeHtml(markdown);
+  $('#wiki_preview').html(html);
 
-    target.innerHTML = html;
-}
-
-$(document).ready(function() {
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
+  });
+};
+
+$(document).ready(function() {
+  getAndProcessMarkdown();
+  $('#wiki_body').on('keyup', function() {
+    getAndProcessMarkdown();
   });
 });
