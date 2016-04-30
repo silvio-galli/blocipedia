@@ -11,11 +11,11 @@
   <% end %>
   <%= form_group_tag(wiki.errors[:title]) do %>
     <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title here", autofocus: true, onfocus: 'markdownPreview()' %>
+    <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title here", autofocus: true %>
   <% end %>
   <%= form_group_tag(wiki.errors[:body]) do %>
     <%= f.label :body %>
-    <%= f.text_area :body, class: 'form-control', onkeyup: 'markdownPreview();', placeholder: "Enter wiki here", rows: "8" %>
+    <%= f.text_area :body, class: 'form-control', placeholder: "Enter wiki here", rows: "8" %>
   <% end %>
   <% if current_user.premium? %>
     <div class="form-group">
