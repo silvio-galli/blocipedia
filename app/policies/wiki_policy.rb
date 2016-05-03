@@ -1,10 +1,23 @@
 class WikiPolicy < ApplicationPolicy
-  def admin_or_owner?
-    user.admin? or record.user == @user
+  def show?
+    (user.present? && record.private != true) ||
+    (record.private && (record.users.include?(user) || record.user == user || user.admin?))
   end
 
-  def admin_or_owner_or_collaborator?
-    admin_or_owner? || record.users.include?(@user)
+  def edit?
+    user.admin? || record.user == user || record.users.include?(user)
+  end
+
+  def update?
+    edit?
+  end
+
+  def destroy?
+    user.admin? || record.user == user
+  end
+
+  def can_add_collaborators?
+    record.user == user && record.private? && user.premium?
   end
 
   class Scope
