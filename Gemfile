@@ -22,6 +22,7 @@ gem 'turbolinks'
 gem 'figaro'
 gem 'pry'
 gem 'faker'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'byebug'
