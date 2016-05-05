@@ -78,9 +78,10 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Devise url options definition
-  config.action_mailer.default_url_options = { host: 'safe-citadel-31281.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'floating-ocean-14149.herokuapp.com' }
 
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
 address:        'smtp.gmail.com',
 port:           '587',

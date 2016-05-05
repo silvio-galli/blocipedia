@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.turbolinks
 //= require bootstrap
-//= require_tree .
+//= require_tree
+//= require turbolinks
+
 var getAndProcessMarkdown = function() {
   var converter = new showdown.Converter();
   var markdown = $('#wiki_body').val();

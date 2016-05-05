@@ -53,7 +53,7 @@ class WikisController < ApplicationController
     authorize @wiki
     if @wiki.destroy
       flash[:notice] = "Wiki #{@wiki.id} was deleted."
-      redirect_to wikis_path
+      redirect_to user_path(current_user)
     else
       flash[:alert] = "Wiki was not deleted."
       render :show
