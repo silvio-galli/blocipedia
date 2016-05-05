@@ -5,7 +5,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? || record.user == user || record.users.include?(user)
+    user.present? && user.admin? || record.user == user || record.users.include?(user)
   end
 
   def update?
@@ -13,7 +13,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? || record.user == user
+    user.present? && user.admin? || record.user == user
   end
 
   def can_add_collaborators?
