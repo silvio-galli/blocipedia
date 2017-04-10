@@ -23,7 +23,7 @@ member = User.create!(
   email:              "member@example.com",
   password:           "password",
   confirmation_token: "UULUxBpinJyT7Yy8PEJK",
-  confirmed_at:       "2016-03-11 17:01:47"
+  confirmed_at:       "2016-03-11 17:01:40"
 )
 
 premium = User.create!(
@@ -31,11 +31,18 @@ premium = User.create!(
   email:              "premium@example.com",
   password:           "password",
   confirmation_token: "nUL2xBpinJyT7Yy8PEJK",
-  confirmed_at:       "2016-03-12 17:01:47"
+  confirmed_at:       "2016-03-11 17:01:45"
+)
+
+admin = User.create!(
+  user_name: "Admin User",
+  email: "admin@example.com",
+  password: "password",
+  confirmation_token: "KUL2xBpinJyT7Yy8PEJK",
+  confirmed_at:       "2016-03-11 17:01:50"
 )
 
 users = User.all
-
 
 50.times do
   wiki = Wiki.create!(
