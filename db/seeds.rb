@@ -5,7 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-5.times do
+
+admin = User.create!(
+  user_name: "Admin User",
+  email: "admin@example.com",
+  password: "password",
+  confirmation_token: "KUL2xBpinJyT7Yy8PEJK",
+  confirmed_at:       "2016-03-11 17:01:40"
+)
+
+4.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   domain = Faker::Internet.domain_name
@@ -23,7 +32,7 @@ member = User.create!(
   email:              "member@example.com",
   password:           "password",
   confirmation_token: "UULUxBpinJyT7Yy8PEJK",
-  confirmed_at:       "2016-03-11 17:01:40"
+  confirmed_at:       "2016-03-11 17:01:42"
 )
 
 premium = User.create!(
@@ -31,15 +40,7 @@ premium = User.create!(
   email:              "premium@example.com",
   password:           "password",
   confirmation_token: "nUL2xBpinJyT7Yy8PEJK",
-  confirmed_at:       "2016-03-11 17:01:45"
-)
-
-admin = User.create!(
-  user_name: "Admin User",
-  email: "admin@example.com",
-  password: "password",
-  confirmation_token: "KUL2xBpinJyT7Yy8PEJK",
-  confirmed_at:       "2016-03-11 17:01:50"
+  confirmed_at:       "2016-03-11 17:01:44"
 )
 
 users = User.all
