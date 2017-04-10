@@ -20,20 +20,23 @@ The project makes also use of a little **javascript** and **jQuery** through the
 Every new user is required to confirm his/her subscription via email confirmation notification that is sent using `ActionMailer` through a Google account, in [development](https://github.com/silvio-galli/blocipedia/blob/master/config/environments/development.rb) and [production](https://github.com/silvio-galli/blocipedia/blob/master/config/environments/production.rb) environment.
 Google keys are managed using [Figaro](https://github.com/laserlemon/figaro) gem.
 
-
 **Authorization** is handled through the [Pundit](https://github.com/elabs/pundit) gem.
 
 The app makes use of the [Stripe](https://github.com/stripe/stripe-ruby) gem and API to create Premium Users (read *paying users*). Stripe keys are managed using [Figaro](https://github.com/laserlemon/figaro) gem.
 
+**URLs** are human friendly strings created using [FriendlyId](https://github.com/norman/friendly_id) gem.
+
 
 ## Features
 
-- Users can create.
-- The app features two plans: free plan (*member user*) and premium plan (*premium user*).
-- Every new user is registered as *member user*.
-- Member users can create only public wikis. Premium users can create public and private wikis.
 - Everybody is allowed to take a look at the list of wikis, but only signed in users can fully read wikis or write a new one.
-- To 
+- The app features two plans: free plan (*member user*) and premium plan (*premium user*).
+- Member users can create only public wikis. Premium users can create public and private wikis.
+- Every new user is registered as *member user*.
+- Every member user can upgrade to premium plan through a subscription of 10 $ via Stripe.
+- Every premium user can downgrade to free plan with one click.
+- Every premium user can add collaborators for private wikis even if they are not premium users.
+
 
 
 ---
@@ -48,3 +51,4 @@ The app makes use of the [Stripe](https://github.com/stripe/stripe-ruby) gem and
 ![](https://img.shields.io/badge/devise-3.5.6-green.svg?style=flat)
 ![](https://img.shields.io/badge/pundit-1.1.0-green.svg?style=flat)
 ![](https://img.shields.io/badge/stripe-1.37.0-green.svg?style=flat)
+![](https://img.shields.io/badge/friendly_id-5.1.0-green.svg?style=flat)
