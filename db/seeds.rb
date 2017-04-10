@@ -28,7 +28,7 @@ member = User.create!(
 
 me = User.create!(
   user_name:          "Fake",
-  email:              "fakeuser049@gmail.com",
+  email:              "fakeuser@example.com",
   password:           "password",
   confirmation_token: "nUL2xBpinJyT7Yy8PEJK",
   confirmed_at:       "2016-03-12 17:01:47"
