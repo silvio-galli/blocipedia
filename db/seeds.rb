@@ -26,9 +26,9 @@ member = User.create!(
   confirmed_at:       "2016-03-11 17:01:47"
 )
 
-me = User.create!(
-  user_name:          "Fake",
-  email:              "fakeuser@example.com",
+premium = User.create!(
+  user_name:          "Premium User",
+  email:              "premium@example.com",
   password:           "password",
   confirmation_token: "nUL2xBpinJyT7Yy8PEJK",
   confirmed_at:       "2016-03-12 17:01:47"
@@ -39,16 +39,32 @@ users = User.all
 
 50.times do
   wiki = Wiki.create!(
-    user: users.sample,
-    title: Faker::Lorem.sentence,
-    body: Faker::Lorem.paragraph(5, true, 10)
+  user:   users.sample,
+  title:  Faker::Lorem.sentence,
+  body:   Faker::Lorem.paragraph(5, true, 10)
   )
 end
 
+u = User.last
+
+premium_subscription = Subscription.create!(
+  premium: true,
+  user_id: u.id
+)
+
+u.update(role: :premium)
+
 md_wiki = Wiki.create!(
-  user: User.last,
-  title: "Markdown Wiki",
-  body: "# This is a h1 title\n## this is a h2 title\nthis is a list\n* item\n* item\n* item\n``` this is code```"
+  user:   u,
+  title:  "Markdown Wiki",
+  body:   "# This is a h1 title\n## this is a h2 title\nthis is a list\n* item\n* item\n* item\n``` this is code```"
+)
+
+private_wiki = Wiki.create!(
+  user:     u,
+  title:    "Private Wiki",
+  body:     "This is a private wiki",
+  private:  true
 )
 
 puts "Seed finished!"
