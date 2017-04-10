@@ -36,7 +36,7 @@ The app makes use of the [Stripe](https://github.com/stripe/stripe-ruby) gem and
 - Every member user can upgrade to premium plan through a subscription of 10 $ via Stripe.
 - Every premium user can downgrade to free plan with one click.
 - Every premium user can add collaborators for private wikis even if they are not premium users.
-
+- As wikis have public interest, they are not deleted if their owner decide to delete his/her account from the application and their ownership moves to _admin user_. Their content and collaboration are preserved for other users.
 
 
 ---
