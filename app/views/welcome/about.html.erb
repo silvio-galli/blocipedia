@@ -1,2 +1,38 @@
-<h1>Welcome#about</h1>
-<p>Find me in app/views/welcome/about.html.erb</p>
+<h1>Welcome to <%= link_to 'Blocipedia', root_path, title: "Back to home page." %></h1>
+<br>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Sign up is simple and secure</h2>
+      <ol>
+        <li>
+          Fill the <%= link_to 'sign up form', new_user_registration_path, title: '' %> with a <strong>user name</strong>, <strong>your email address</strong> and a <strong>password</strong>.
+        </li>
+        <li>You will receive a confirmation email with a link.</li>
+        <li>Click on the link and you're in!</li>
+      </ol>
+      <p class="lead">
+        <small>
+          We won't store your data or give them to anybody. If you decide to cancel from Blocipedia your data will be permanently deleted.
+        </small>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <h2>You do not feel comfortable and want to test Blocipedia without sign up?</h2>
+  <div class="col-md-6">
+    <p>You can sign in as the member demo user.</p>
+    <ul>
+      <li>user: <em>member@example.com</em></li>
+      <li>password: <em>password</em></li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <p>You can sign in as the premium demo user.</p>
+    <ul>
+      <li>user: <em>premium@example.com</em></li>
+      <li>password: <em>password</em></li>
+    </ul>
+  </div>
+</div>
