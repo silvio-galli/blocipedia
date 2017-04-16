@@ -4,7 +4,7 @@ SaaS Wiki Collaboration Tool made with the help of my mentor [Charlie Gaines](ht
 
 [Demo available here](https://floating-ocean-14149.herokuapp.com/) on Heroku platform.
 
-The source code is on [GitHub](https://github.com) at: [https://github.com/silvio-galli/bloccit](https://github.com/silvio-galli/blocipedia)
+The source code is on [GitHub](https://github.com) at: [https://github.com/silvio-galli/blocipedia](https://github.com/silvio-galli/blocipedia)
 
 
 ## Tech specs
